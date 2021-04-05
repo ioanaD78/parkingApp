@@ -1,26 +1,16 @@
-import * as React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import React from 'react';
+import { Text, View } from 'react-native';
 
-
-import Onboarding from './screens/Onboarding';
-import Login from './screens/Login';
-import AsyncStorage from '@react-native-community/async-storage';
-
-const AppStack = createStackNavigator();
-
-const App = () => {
-return(
-      <NavigationContainer>
-      <AppStack.Navigator
-      headerMode = "none"
-      >
-        <AppStack.Screen name = "Onboarding" component = {Onboarding} />
-        <AppStack.Screen name = "Login" component = {Login} />
-      </AppStack.Navigator>
-    </NavigationContainer>
-  );
+const HelloWorldApp = () => {
+  return (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+      }}>
+      <Text>Hello, world!</Text>
+    </View>
+  )
 }
-
-
-export default App;
+export default HelloWorldApp;
