@@ -15,7 +15,8 @@ return(
       <AppStack.Navigator
       headerMode = "none"
       >
-    
+        <AppStack.Screen name = "Onboarding" component = {Onboarding} />
+        <AppStack.Screen name = "Login" component = {Login} />
       </AppStack.Navigator>
     </NavigationContainer>
   );
