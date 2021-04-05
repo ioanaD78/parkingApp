@@ -21,7 +21,7 @@ const onboardingScreen = ({navigation}) => {
       {
         backgroundColor: '#E9F5F1',
         image: <Image source={require('../images/2.png')} />,
-        title: 'Connect with a driver',
+        title: 'Connect with drivers',
         titleStyles: { color: '#343434',  fontWeight: 'bold'},
         subtitle: 'Scan a license plate and contact the driver!',
         
