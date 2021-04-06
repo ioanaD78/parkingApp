@@ -6,8 +6,8 @@ const onboardingScreen = ({navigation}) => {
   return (
     <Onboarding
 
-    onSkip = {() => navigation.replace("Login")}
-    onDone = {() => navigation.navigate("Login")}
+    onSkip = {() => navigation.replace("Home")} //replace with login
+    onDone = {() => navigation.navigate("Home")} //replace with login
 
     pages={[
       {
