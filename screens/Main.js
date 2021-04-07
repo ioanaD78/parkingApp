@@ -11,15 +11,23 @@ const homeStack = createStackNavigator();
 const profileStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const mainScreen = () => (
-//de reparat
-    <View>
-        <Text> Scan thingie </Text>
-        <Icon.Button name = "scan-circle-outline" size = {25} backgroundColor = "#486eb4" onPress = {() => 
-               alert('Clicked')}/>
+//align the scan thingie right
+//add header
 
-    </View>
-)
+const mainScreen = ({navigation}) => {
+  return(
+  
+      <View style = {{ flex:1, alignItems: 'center', justifyContent: 'center', backgroundColor: "#fff"}}>
+          <Icon.Button
+          name = "scan-circle-outline"
+          size = {300}
+          color = "#34548a"
+          backgroundColor = "#fff"
+          onPress = {() => navigation.navigate("Home")} />
+      </View>
+  
+  );
+};
 
 const homeStackScreen = ({navigation}) => (
     <homeStack.Navigator screenOptions = {{
