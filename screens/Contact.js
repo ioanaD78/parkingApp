@@ -8,7 +8,7 @@ const contactScreen = ({navigation}) => {
             <Text> Contact Screen </Text>
             <Button
             title = "Go to home"
-            onPress = {() => navigation.navigate("Home")} />
+            onPress = {() => alert("Contact")} />
         </View>
     
     );

@@ -2221,6 +2221,11 @@
   "resolved" "https://registry.yarnpkg.com/acorn/-/acorn-7.4.1.tgz"
   "version" "7.4.1"
 
+"add@^2.0.6":
+  "integrity" "sha1-JI8Kn25aUo7yKV2+7DBTITCuIjU="
+  "resolved" "https://registry.npmjs.org/add/-/add-2.0.6.tgz"
+  "version" "2.0.6"
+
 "ajv@^6.12.3":
   "integrity" "sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g=="
   "resolved" "https://registry.yarnpkg.com/ajv/-/ajv-6.12.6.tgz"
@@ -6440,6 +6445,11 @@
   "resolved" "https://registry.yarnpkg.com/options/-/options-0.0.6.tgz"
   "version" "0.0.6"
 
+"or@^0.2.0":
+  "integrity" "sha1-mQTqYeJZQ/k14g9PR0ngoUGoK2o="
+  "resolved" "https://registry.npmjs.org/or/-/or-0.2.0.tgz"
+  "version" "0.2.0"
+
 "ora@^3.4.0":
   "integrity" "sha512-eNwHudNbO1folBP3JsZ19v9azXWtQZjICdr3Q0TDPIaeBQ3mXLrh54wM+er0+hSp+dWKf+Z8KM58CYzEyIYxYg=="
   "resolved" "https://registry.yarnpkg.com/ora/-/ora-3.4.0.tgz"
@@ -6897,6 +6907,11 @@
   "integrity" "sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w=="
   "resolved" "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz"
   "version" "17.0.2"
+
+"react-native-avatar-generator@^1.0.2":
+  "integrity" "sha512-RAJn2MhGWfRxLC8x99E/RiSsHeuxcsXUfGGnREZq20NINUiXUZsnLWRgcoFthEhg5OxjNelMwVv5ewaLSsMycA=="
+  "resolved" "https://registry.npmjs.org/react-native-avatar-generator/-/react-native-avatar-generator-1.0.2.tgz"
+  "version" "1.0.2"
 
 "react-native-gesture-handler@^1.8.0", "react-native-gesture-handler@>= 1.0.0":
   "integrity" "sha512-E2FZa0qZ5Bi0Z8Jg4n9DaFomHvedSjwbO2DPmUUHYRy1lH2yxXUpSrqJd6yymu+Efzmjg2+JZzsjFYA2Iq8VEQ=="
@@ -8751,6 +8766,11 @@
     "string-width" "^4.2.0"
     "y18n" "^5.0.5"
     "yargs-parser" "^20.2.2"
+
+"yarn@^1.22.10":
+  "integrity" "sha512-IanQGI9RRPAN87VGTF7zs2uxkSyQSrSPsju0COgbsKQOOXr5LtcVPeyXWgwVa0ywG3d8dg6kSYKGBuYK021qeA=="
+  "resolved" "https://registry.npmjs.org/yarn/-/yarn-1.22.10.tgz"
+  "version" "1.22.10"
 
 "yocto-queue@^0.1.0":
   "integrity" "sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q=="

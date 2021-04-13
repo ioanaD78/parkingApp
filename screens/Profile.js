@@ -8,7 +8,7 @@ const profileScreen = ({navigation}) => {
             <Text> Profile Screen </Text>
             <Button
             title = "Go to home"
-            onPress = {() => navigation.navigate("Home")} />
+            onPress = {() => nalert("Profile")} />
         </View>
     
     );

@@ -9,13 +9,18 @@ import { Button, Text, View } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import Main from './screens/Main';
+import Profile from './screens/Profile';
+import Contact from './screens/Contact';
+import Onboarding from './screens/Onboarding';
+
+import { DrawerNav } from './screens/DrawerNav'
+import { createStackNavigator } from '@react-navigation/stack';
 
 //const screenStack = createStackNavigator();
-const drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator();
+const ScreenStack = createStackNavigator();
 
-
-
-const app = () => {
+const App = () => {
 
   // const [isFirstLaunch, setIsFirstLaunch] = React.useState(null);
 
@@ -38,26 +43,26 @@ const app = () => {
 
     return(
       <NavigationContainer>
-        <drawer.Navigator initialRouteName = "Home">
-          <drawer.Screen name = "Home" component = {Main}/>
-          {/* <drawer.Screen name = "Profile" component = {profileStackScreen}/> */}
-        </drawer.Navigator>
-      </NavigationContainer>
-      /* <screenStack.Navigator
-      headerMode = "none"
-      >
-        {/* <screenStack.Screen name = "Onboarding" component = {Onboarding} />
-        <screenStack.Screen name = "Login" component = {Login} /> }
+        <Drawer.Navigator drawerContent = {props => <DrawerNav{...props}/>}>
+          <Drawer.Screen name = "Home" component = {Main}/>
+          <Drawer.Screen name = "Profile" component = {Profile}/>
+          <Drawer.Screen name = "Contact" component = {Contact}/>
+        </Drawer.Navigator>
+        </NavigationContainer>
 
-        <screenStack.Screen name = "Home" component = {Home} />
-        <screenStack.Screen name = "Profile" component = {Profile} />
-      </screenStack.Navigator> */
+        /* <screenStack.Navigator>
+         <screenStack.Screen name = "Onboarding" component = {Onboarding} />
+        <screenStack.Screen name = "Login" component = {Login} /> 
+      </screenStack.Navigator>  */
   
+      
+
+       
   );
   }
 //   else {
-//    return <Home />  //replace with login
+//    return <Main/>  //replace with login
 //   }
 // }
 
-export default app;
+export default App;
