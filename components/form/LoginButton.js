@@ -1,8 +1,8 @@
 import React from 'react';
 import {Text, TouchableOpacity, StyleSheet} from 'react-native';
-import {windowHeight, windowWidth} from '/utils/Dimensions';
+import {windowHeight, windowWidth} from '../utils/WindowDimensions';
 
-const FormButton = ({buttonTitle, ...rest}) => {
+const LoginButton = ({buttonTitle, ...rest}) => {
   return (
     <TouchableOpacity style={styles.buttonContainer} {...rest}>
       <Text style={styles.buttonText}>{buttonTitle}</Text>
@@ -10,7 +10,7 @@ const FormButton = ({buttonTitle, ...rest}) => {
   );
 };
 
-export default FormButton;
+export default LoginButton;
 
 const styles = StyleSheet.create({
   buttonContainer: {
