@@ -7,7 +7,7 @@ import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import windowWidth from '../components/utils/WindowDimensions'
 import windowHeight from '../components/utils/WindowDimensions'
 
-//add header
+//add header cu buton de menu
 
 const mainScreen = ({navigation}) => {
   return(

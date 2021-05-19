@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import {windowHeight, windowWidth} from '../components/utils/WindowDimensions';
 
 import Input from '../components/form/Input';
 import LoginButton from '../components/form/LoginButton';
@@ -41,7 +40,7 @@ const Login = ({navigation}) => {
         </TouchableOpacity>
          <TouchableOpacity
         style={styles.navButton}
-        onPress={() => navigation.navigate('Login')}>
+        onPress={() => alert('Login')}>
         <Text style={styles.navButtonText}>Have an account? Sign In</Text>
       </TouchableOpacity>
     </View>

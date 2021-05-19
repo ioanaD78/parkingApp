@@ -29,13 +29,13 @@ const Login = ({navigation}) => {
 
         <LoginButton
           buttonTitle = "Sign In"
-          onPress = {() => alert('Sign in Test')}
+          onPress = {() => alert('Main')} 
         />
 
-        <TouchableOpacity style = {styles.forgotButton} onPress = {() => alert ('Forgot test')}>
+        <TouchableOpacity style = {styles.forgotButton} onPress = {() => alert ("Forgot test")}>
           <Text style = {styles.navButtonText}> Forgot Password </Text>
         </TouchableOpacity>
-        <TouchableOpacity style = {styles.forgotButton} onPress = {() => navigation.navigate("Register")}>
+        <TouchableOpacity style = {styles.forgotButton} onPress={() => alert('Register')}>
           <Text style = {styles.navButtonText}> Don't have an account? Register now! </Text>
         </TouchableOpacity>
 

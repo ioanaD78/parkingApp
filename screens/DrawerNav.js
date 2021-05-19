@@ -90,7 +90,7 @@ export function DrawerNav(props){
                         />
                     )}
                     label = "Sign Out"
-                    onPress = {() => {}}
+                    onPress = {() => alert('Sign out test')}
                     />
             </Drawer.Section>
         </View>

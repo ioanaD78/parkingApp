@@ -8,7 +8,7 @@ const scanScreen = ({navigation}) => {
             <Text> Scan Screen </Text>
             <Button
             title = "Go to home"
-            onPress = {() => navigation.navigate("Home")} />
+            onPress = {() => navigation.navigate("Main")} />
         </View>
     
     );
