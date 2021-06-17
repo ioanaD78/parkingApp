@@ -35,12 +35,13 @@ def register():
     # Output message if something goes wrong...
     msg = ''
 
-    # Check if "username", "password" and "email" + phone and license plate POST requests exist (user submitted form)
-    if request.method == 'POST' and 'email' in request.form and 'password' in request.form:
+    # Check if "name", "password" and "email" + phone and license plate POST requests exist (user submitted form)
+    if request.method == 'POST' and 'email' in request.form and 'password' in request.form and 'name' in request.form:
 
         # Create variables for easy access
         email = request.form['email']
         password = request.form['password']
+        name = request.form['name']
 
         hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
@@ -61,7 +62,7 @@ def register():
         else:
             # Account doesnt exists and the form data is valid, now insert new account into accounts table
             cursor.execute(
-                'INSERT INTO register VALUES (NULL, %s, %s)', (email, hashed))
+                'INSERT INTO register VALUES (NULL, %s, %s)', (email, hashed, name))
             mysql.connection.commit()
             msg = 'You have successfully registered!'
 
