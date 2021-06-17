@@ -1,12 +1,11 @@
 import * as React from 'react';
 
 import { View, StyleSheet } from 'react-native';
-//to write about APIs
-import { Avatar, Title, Caption, Drawer } from 'react-native-paper';
+import { Title, Caption, Drawer } from 'react-native-paper';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 
 import UserAvatar from 'react-native-avatar-generator';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-ionicons';
 
 //update avatar, license plate and username to connect with DB
 export function DrawerNav(props){
@@ -19,7 +18,7 @@ export function DrawerNav(props){
                           
                             <UserAvatar styles = {styles.avatar}
                                 size = {60}
-                                firstName="John"
+                                firstName="John" //de scos din DB dupa cont
                                 lastName="Doe"
                                 />
                         

@@ -1,3 +1,37 @@
+import React, { Component } from 'react'
+import { View, Text, StyleSheet } from 'react-native'
+
+class Main extends Component {
+  state = {
+     data: ''
+  }
+  componentDidMount = () => {
+     fetch('http://192.168.56.1/plateRecognition', {
+        method: 'GET'
+     })
+     .then((response) => response.json())
+     .then((responseJson) => {
+        console.log(responseJson);
+        this.setState({
+           data: responseJson
+        })
+     })
+     .catch((error) => {
+        console.error(error);
+     });
+  }
+  render() {
+     return (
+        <View style={{justifyContent: "center", alignItems: "center", flex: 1}}>
+           <Text>
+              {this.state.data.plateRecognition}
+           </Text>
+        </View>
+     )
+  }
+}
+export default Main;
+
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';

@@ -1,4 +1,4 @@
-package com.parking;
+package com.parkingapp;
 
 import android.os.Bundle;
 

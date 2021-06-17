@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {useEffect} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import AsyncStorage from '@react-native-community/async-storage';
+import { useEffect } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Onboarding from './screens/Onboarding';
 
@@ -16,7 +16,7 @@ const App = () => {
 
   useEffect(() => {
     AsyncStorage.getItem('alreadyLaunched').then(value => {
-      if(value === null) {
+      if (value === null) {
         AsyncStorage.setItem('alreadyLaunched', 'true');
         setIsFirstLaunch(true);
       }
@@ -26,23 +26,23 @@ const App = () => {
     });
   }, []);
 
-  if(isFirstLaunch == null){
+  if (isFirstLaunch == null) {
     return null;
   }
-  else if(isFirstLaunch == true) {
-    return(
+  else if (isFirstLaunch == true) {
+    return (
       <NavigationContainer>
-      <AppStack.Navigator
-      headerMode = "none"
-      >
-        <AppStack.Screen name = "Onboarding" component = {Onboarding} />
-        <AppStack.Screen name = "Login" component = {Login} />
-      </AppStack.Navigator>
-    </NavigationContainer>
-  );
+        <AppStack.Navigator
+          headerMode="none"
+        >
+          <AppStack.Screen name="Onboarding" component={Onboarding} />
+          <AppStack.Screen name="Login" component={Login} />
+        </AppStack.Navigator>
+      </NavigationContainer>
+    );
   }
   else {
-   return <Login />
+    return <Login />
   }
 
 }
