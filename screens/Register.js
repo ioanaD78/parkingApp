@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { windowHeight } from '../components/utils/WindowDimensions';
 
 import Input from '../components/form/Input';
 import LoginButton from '../components/form/LoginButton';
@@ -9,18 +8,22 @@ const Login = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={require('../images/placeholder.png')}
-        style={styles.logo}
-      />
-      <Text style={styles.text}> Test </Text>
+      <Text style={styles.text}>Create an account</Text>
 
+      <Input
+        placeholderText="Full name"
+        iconType="person-outline"
+        autoCapitalize="words"
+        autoCorrect={false}
+      />
       <Input
         placeholderText="Email"
         iconType="mail-outline"
         keyboardType="email-address"
         autoCapitalize="none"
+        autoCorrect={false}
       />
+
       <Input
         placeholderText="Password"
         iconType="lock-closed-outline"
@@ -28,8 +31,8 @@ const Login = ({ navigation }) => {
       />
 
       <LoginButton
-        buttonTitle="Sign In"
-        onPress={() => alert('Main')}
+        buttonTitle="Sign Up"
+        onPress={() => alert('Register test')}
       />
 
       <TouchableOpacity style={styles.forgotButton} onPress={() => alert('Forgot test')}>
@@ -41,6 +44,7 @@ const Login = ({ navigation }) => {
         <Text style={styles.navButtonText}>Have an account? Sign In</Text>
       </TouchableOpacity>
     </View>
+
   );
 };
 
@@ -48,32 +52,40 @@ export default Login;
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#f9fafd',
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
-    padding: 15,
-    marginTop: windowHeight / 6,
-  },
-  logo: {
-    height: 150,
-    width: 150,
-    resizeMode: 'cover',
+    padding: 20,
   },
   text: {
     fontFamily: 'Kufam-SemiBoldItalic',
-    fontSize: 30,
+    fontSize: 28,
     marginBottom: 10,
-    color: '#34548a',
+    color: '#051d5f',
   },
   navButton: {
     marginTop: 15,
   },
-  forgotButton: {
-    marginVertical: 35,
-  },
   navButtonText: {
-    marginBottom: -30,
     fontSize: 18,
     fontWeight: '500',
     color: '#2e64e5',
     fontFamily: 'Lato-Regular',
+  },
+  textPrivate: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginVertical: 35,
+    justifyContent: 'center',
+  },
+  color_textPrivate: {
+    fontSize: 13,
+    fontWeight: '400',
+    fontFamily: 'Lato-Regular',
+    color: 'grey',
+  },
+  forgotButton: {
+    marginVertical: 35,
   },
 });
