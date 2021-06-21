@@ -6,6 +6,7 @@ import Profile from "./Profile";
 import Contact from "./Contact";
 import Register from "./Register";
 import Login from "./Login";
+import Onboarding from "./Onboarding";
 
 const Stack = createStackNavigator();
 
@@ -19,11 +20,13 @@ const screenOptionStyle = {
 
 const MainStackNavigator = () => {
     return (
-        <Stack.Navigator screenOptions={screenOptionStyle}>
+        <Stack.Navigator screenOptions={screenOptionStyle} screenOptions={{
+            headerShown: false
+        }}>
+            <Stack.Screen name="Welcome!" component={Onboarding} />
             <Stack.Screen name="Home" component={Main} />
             <Stack.Screen name="Register" component={Register} />
             <Stack.Screen name="Login" component={Login} />
-
         </Stack.Navigator>
     );
 }
