@@ -10,7 +10,7 @@ const Register = ({ navigation }) => {
 
     <View style={styles.container}>
       <Image
-        source={require('../images/logo.png')}
+        source={require('../images/5.png')}
         style={styles.logo}
       />
       <Text style={styles.text}>Create an account</Text>
@@ -87,8 +87,8 @@ const styles = StyleSheet.create({
     marginVertical: 15,
   },
   logo: {
-    height: 250,
-    width: 250,
+    height: 300,
+    width: 300,
     resizeMode: 'cover',
   },
 });

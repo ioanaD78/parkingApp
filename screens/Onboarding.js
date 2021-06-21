@@ -7,9 +7,17 @@ const onboardingScreen = ({ navigation }) => {
     <Onboarding
 
       onSkip={() => navigation.replace("Register")}
-      onDone={() => navigation.navigate("Register")}
+      onDone={() => navigation.replace("Register")}
 
       pages={[
+        {
+          backgroundColor: '#E9F5F1',
+          image: <Image source={require('../images/4.png')} />,
+          title: 'FIND THE DRIVER',
+          titleStyles: { color: '#343434', fontWeight: 'bold' },
+          subtitle: 'Communication between drivers made easy!',
+
+        },
         {
           backgroundColor: '#E9F5F1',
           image: <Image source={require('../images/1.png')} />,
@@ -31,7 +39,7 @@ const onboardingScreen = ({ navigation }) => {
           image: <Image source={require('../images/3.png')} />,
           title: 'Improve traffic',
           titleStyles: { color: '#343434', fontWeight: 'bold' },
-          subtitle: 'Communication between drivers made easy!',
+          subtitle: 'Parking has never been easier!',
 
         },
       ]}

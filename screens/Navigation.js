@@ -24,8 +24,9 @@ const MainStackNavigator = () => {
             headerShown: false
         }}>
             <Stack.Screen name="Welcome!" component={Onboarding} />
-            <Stack.Screen name="Home" component={Main} />
             <Stack.Screen name="Register" component={Register} />
+            <Stack.Screen name="Home" component={Main} />
+
             <Stack.Screen name="Login" component={Login} />
         </Stack.Navigator>
     );

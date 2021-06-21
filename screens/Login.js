@@ -10,7 +10,7 @@ const Login = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Image
-        source={require('../images/logo.png')}
+        source={require('../images/5.png')}
         style={styles.logo}
       />
       <Text style={styles.text}> Log In </Text>
@@ -37,7 +37,7 @@ const Login = ({ navigation }) => {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.navButton}
-        onPress={() => navigation.navigate("Register")}>
+        onPress={() => navigation.replace("Register")}>
         <Text style={styles.navButtonText}>Don't have an account? Sign up!</Text>
       </TouchableOpacity>
     </View>
@@ -53,8 +53,8 @@ const styles = StyleSheet.create({
     marginTop: windowHeight / 30,
   },
   logo: {
-    height: 250,
-    width: 250,
+    height: 300,
+    width: 300,
     resizeMode: 'cover',
   },
   text: {

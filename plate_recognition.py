@@ -6,6 +6,9 @@ import numpy as np
 import imutils
 import easyocr
 
+import logging
+logging.basicConfig(filename='logs.log', level=logging.DEBUG)
+
 
 def plateRecognition():
 
