@@ -33,17 +33,28 @@
 // export default Main;
 
 import * as React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, ImagePickerIOS } from 'react-native';
+import ImagePicker from 'react-native-image-crop-picker';
 
-import windowWidth from '../components/utils/WindowDimensions'
-import windowHeight from '../components/utils/WindowDimensions'
+import { windowHeight, windowWidth } from '../components/utils/WindowDimensions'
 
 //add header cu buton de menu
 
 const mainScreen = ({ navigation }) => {
+
+   const takePhoto = () => {
+
+      ImagePicker.openCamera({
+         width: 300,
+         height: 400,
+         cropping: true,
+      }).then(image => {
+         console.log(image);
+      });
+
+   }
+
    return (
 
       <View style={styles.container}>
@@ -53,7 +64,7 @@ const mainScreen = ({ navigation }) => {
                size={300}
                color="#34548a"
                style={styles.button}
-               onPress={() => alert("Clicked")} />
+               onPress={takePhoto} />
          </TouchableOpacity>
       </View>
 

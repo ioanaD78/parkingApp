@@ -4,10 +4,15 @@ import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import Input from '../components/form/Input';
 import LoginButton from '../components/form/LoginButton';
 
-const Login = ({ navigation }) => {
+const Register = ({ navigation }) => {
 
   return (
+
     <View style={styles.container}>
+      <Image
+        source={require('../images/5.png')}
+        style={styles.logo}
+      />
       <Text style={styles.text}>Create an account</Text>
 
       <Input
@@ -35,20 +40,17 @@ const Login = ({ navigation }) => {
         onPress={() => alert('Register test')}
       />
 
-      <TouchableOpacity style={styles.forgotButton} onPress={() => alert('Forgot test')}>
-        <Text style={styles.navButtonText}> Forgot Password </Text>
-      </TouchableOpacity>
       <TouchableOpacity
         style={styles.navButton}
         onPress={() => navigation.navigate("Login")}>
-        <Text style={styles.navButtonText}>Have an account? Sign In</Text>
+        <Text style={styles.navButtonText}>Have an account? Sign in!</Text>
       </TouchableOpacity>
     </View>
 
   );
 };
 
-export default Login;
+export default Register;
 
 const styles = StyleSheet.create({
   container: {
@@ -59,19 +61,17 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   text: {
-    fontFamily: 'Kufam-SemiBoldItalic',
     fontSize: 28,
     marginBottom: 10,
     color: '#051d5f',
   },
   navButton: {
-    marginTop: 15,
+    marginTop: 20,
   },
   navButtonText: {
     fontSize: 18,
     fontWeight: '500',
     color: '#2e64e5',
-    fontFamily: 'Lato-Regular',
   },
   textPrivate: {
     flexDirection: 'row',
@@ -82,10 +82,13 @@ const styles = StyleSheet.create({
   color_textPrivate: {
     fontSize: 13,
     fontWeight: '400',
-    fontFamily: 'Lato-Regular',
-    color: 'grey',
   },
   forgotButton: {
-    marginVertical: 35,
+    marginVertical: 15,
+  },
+  logo: {
+    height: 300,
+    width: 300,
+    resizeMode: 'cover',
   },
 });

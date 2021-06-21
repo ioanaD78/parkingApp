@@ -4,6 +4,11 @@ import MySQLdb.cursors
 import re
 import bcrypt
 
+import logging
+logging.basicConfig(filename='logs.log',
+                    level=logging.DEBUG,
+                    format='%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
+
 app = Flask(__name__)
 
 # de pus in scris de scos de aici
@@ -29,7 +34,7 @@ mysql = MySQL(app)
 # Register route for handling the POST request
 
 
-@app.route('/python-login/register', methods=['GET', 'POST'])
+@ app.route('/python-login/register', methods=['GET', 'POST'])
 def register():
 
     # Output message if something goes wrong...
@@ -37,6 +42,8 @@ def register():
 
     # Check if "name", "password" and "email" + phone and license plate POST requests exist (user submitted form)
     if request.method == 'POST' and 'email' in request.form and 'password' in request.form and 'name' in request.form:
+
+        app.logger.info('User submitted form succesfully')
 
         # Create variables for easy access
         email = request.form['email']
@@ -59,6 +66,9 @@ def register():
         elif not email or not password:
             msg = 'Please fill in all the fields!'
 
+            app.logger.info(
+                'Account already exists - prompting user with details')
+
         else:
             # Account doesnt exists and the form data is valid, now insert new account into accounts table
             cursor.execute(
@@ -66,15 +76,18 @@ def register():
             mysql.connection.commit()
             msg = 'You have successfully registered!'
 
+            app.logger.info('New account created')
+
     elif request.method == 'POST':
         # Form is empty... (no POST data)
         msg = 'Please fill out the form!'
+        app.logger.info('User tried to submit empty form')
 
     # Show registration form with message (if any)
-    return render_template('register.html', msg=msg)
+    return render_template('Register.js', msg=msg)
 
 
-@app.route('/python-login/', methods=['GET', 'POST'])
+@ app.route('/python-login/', methods=['GET', 'POST'])
 def login():
 
     # Output message if something goes wrong...
@@ -107,7 +120,7 @@ def login():
     return render_template('index.html', msg=msg)
 
 
-@app.route('/python-login/logout')
+@ app.route('/python-login/logout')
 def logout():
 
     # Remove session data, this will log the user out
@@ -121,7 +134,7 @@ def logout():
 # http://localhost:5000/python-login/home - this will be the home page, only accessible for loggedin users
 
 
-@app.route('/python-login/home')
+@ app.route('/python-login/home')
 def home():
     # Check if user is loggedin
     if 'loggedin' in session:
@@ -133,7 +146,7 @@ def home():
 # http://localhost:5000/python-login/profile - this will be the profile page, only accessible for loggedin users
 
 
-@app.route('/python-login/profile')
+@ app.route('/python-login/profile')
 def profile():
     # Check if user is loggedin
     if 'loggedin' in session:

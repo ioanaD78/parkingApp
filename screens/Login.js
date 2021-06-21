@@ -10,10 +10,10 @@ const Login = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Image
-        source={require('../images/placeholder.png')}
+        source={require('../images/5.png')}
         style={styles.logo}
       />
-      <Text style={styles.text}> Test </Text>
+      <Text style={styles.text}> Log In </Text>
 
       <Input
         placeholderText="Email"
@@ -37,8 +37,8 @@ const Login = ({ navigation }) => {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.navButton}
-        onPress={() => navigation.navigate("Login")}>
-        <Text style={styles.navButtonText}>Have an account? Sign In</Text>
+        onPress={() => navigation.replace("Register")}>
+        <Text style={styles.navButtonText}>Don't have an account? Sign up!</Text>
       </TouchableOpacity>
     </View>
   );
@@ -50,15 +50,14 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     padding: 15,
-    marginTop: windowHeight / 6,
+    marginTop: windowHeight / 30,
   },
   logo: {
-    height: 150,
-    width: 150,
+    height: 300,
+    width: 300,
     resizeMode: 'cover',
   },
   text: {
-    fontFamily: 'Kufam-SemiBoldItalic',
     fontSize: 30,
     marginBottom: 10,
     color: '#34548a',
@@ -74,6 +73,5 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '500',
     color: '#2e64e5',
-    fontFamily: 'Lato-Regular',
   },
 });
