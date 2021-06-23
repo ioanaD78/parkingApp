@@ -34,7 +34,7 @@ mysql = MySQL(app)
 # Register route for handling the POST request
 
 
-@ app.route('/python-login/register', methods=['GET', 'POST'])
+@ app.route('/register', methods=['GET', 'POST'])
 def register():
 
     # Output message if something goes wrong...
@@ -87,7 +87,7 @@ def register():
     return render_template('Register.js', msg=msg)
 
 
-@ app.route('/python-login/', methods=['GET', 'POST'])
+@ app.route('/login', methods=['GET', 'POST'])
 def login():
 
     # Output message if something goes wrong...
@@ -120,7 +120,7 @@ def login():
     return render_template('index.html', msg=msg)
 
 
-@ app.route('/python-login/logout')
+@ app.route('/logout')
 def logout():
 
     # Remove session data, this will log the user out
@@ -134,19 +134,19 @@ def logout():
 # http://localhost:5000/python-login/home - this will be the home page, only accessible for loggedin users
 
 
-@ app.route('/python-login/home')
+@ app.route('/home')
 def home():
     # Check if user is loggedin
     if 'loggedin' in session:
         # User is loggedin show them the home page
-        return render_template('home.html', username=session['email'])
+        return render_template('Main.js', username=session['email'])
     # User is not loggedin redirect to login page
     return redirect(url_for('login'))
 
 # http://localhost:5000/python-login/profile - this will be the profile page, only accessible for loggedin users
 
 
-@ app.route('/python-login/profile')
+@ app.route('/profile')
 def profile():
     # Check if user is loggedin
     if 'loggedin' in session:
@@ -156,6 +156,6 @@ def profile():
                        (session['id'],))
         account = cursor.fetchone()
         # Show the profile page with account info
-        return render_template('profile.html', account=account)
+        return render_template('Profile.js', account=account)
     # User is not loggedin redirect to login page
     return redirect(url_for('login'))

@@ -23,6 +23,7 @@
     "react-native": "~0.63.4",
     "react-native-avatar-generator": "^1.0.2",
     "react-native-camera": "^3.44.1",
+    "react-native-email": "^1.1.0",
     "react-native-gesture-handler": "~1.10.2",
     "react-native-image-crop-picker": "^0.36.2",
     "react-native-ionicons": "^4.6.5",

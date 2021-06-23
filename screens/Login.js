@@ -31,14 +31,17 @@ const Login = ({ navigation }) => {
         buttonTitle="Sign In"
         onPress={() => alert('Main')}
       />
-
-      <TouchableOpacity style={styles.forgotButton} onPress={() => alert('Forgot test')}>
+      <LoginButton
+        buttonTitle="plm"
+        onPress={() => navigation.replace("Register")}
+      />
+      <TouchableOpacity style={styles.forgotButton} onPress={() => alert('PassReset')}>
         <Text style={styles.navButtonText}> Forgot Password </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.navButton}
-        onPress={() => navigation.replace("Register")}>
-        <Text style={styles.navButtonText}>Don't have an account? Sign up!</Text>
+      >
+        <Text style={styles.navButtonText} >Don't have an account? Sign up!</Text>
       </TouchableOpacity>
     </View>
   );
