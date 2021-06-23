@@ -4,104 +4,61 @@ import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 import Input from '../components/form/Input';
 import LoginButton from '../components/form/LoginButton';
-class Register extends Component {
+import Bttn from '../components/form/Bttn';
 
-  constructor() {
-    super();
-    this.state = {
-      email: '',
-      name: '',
-      password: ''
-    }
-  }
+const Register = ({ navigation }) => {
 
-  updateValue(text, field) {
-    if (field == 'name') {
-      this.setState({
-        name: text,
-      })
-    }
-    else if (field == 'email') {
-      this.setState({
-        email: text,
-      })
-    }
-    else if (field == 'password') {
-      this.setState({
-        password: text,
-      })
-    }
-  }
+  return (
+    <View style={styles.container}>
+      <Image
+        source={require('../images/5.png')}
+        style={styles.logo}
+      />
+      <Text style={styles.text}>Create an account</Text>
 
-  submit() {
-    let collection = {}
-    collection.email = this.state.email,
-      collection.password = this.state.password,
-      collection.name = this.state.name
-    console.log(collection);
+      <Input
+        placeholderText="Full name"
+        iconType="person-outline"
+        autoCapitalize="words"
+        autoCorrect={false}
+        onChangeText={(text) => this.updateValue(text, 'name')}
+      />
+      <Input
+        placeholderText="Email"
+        iconType="mail-outline"
+        keyboardType="email-address"
+        autoCapitalize="none"
+        autoCorrect={false}
+        onChangeText={(text) => this.updateValue(text, 'email')}
+      />
 
-    fetch('http://192.168.56.1/register', {
-      method: 'POST',
-      body: JSON.stringify(collection),
-      header: new Headers({
-        'Content-Type': 'application/json'
-      })
-    }).then(res => res.json())
-      .catch(error => console.error('Error:', error))
-  }
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <Image
-          source={require('../images/5.png')}
-          style={styles.logo}
-        />
-        <Text style={styles.text}>Create an account</Text>
+      <Input
+        placeholderText="Password"
+        iconType="lock-closed-outline"
+        secureTextEntry={true}
+        onChangeText={(text) => this.updateValue(text, 'password')}
+      />
 
-        <Input
-          placeholderText="Full name"
-          iconType="person-outline"
-          autoCapitalize="words"
-          autoCorrect={false}
-          onChangeText={(text) => this.updateValue(text, 'name')}
-        />
-        <Input
-          placeholderText="Email"
-          iconType="mail-outline"
-          keyboardType="email-address"
-          autoCapitalize="none"
-          autoCorrect={false}
-          onChangeText={(text) => this.updateValue(text, 'email')}
-        />
+      <LoginButton
+        buttonTitle="Sign Up"
+        onPress={() => this.submit()}
+      />
 
-        <Input
-          placeholderText="Password"
-          iconType="lock-closed-outline"
-          secureTextEntry={true}
-          onChangeText={(text) => this.updateValue(text, 'password')}
-        />
 
-        <LoginButton
-          buttonTitle="Sign Up"
-          onPress={() => this.submit()}
-        />
-
-        <TouchableOpacity
-          style={styles.navButton}
-          onPress={() => navigation.navigate("Login")}>
-          <Text style={styles.navButtonText}>Have an account? Sign in!</Text>
-        </TouchableOpacity>
-      </View>
-    )
-  }
+      <Bttn
+        buttonTitle="Already have an account? Sign in!"
+        onPress={() => navigation.navigate("Login")}
+      />
+    </View >
+  )
 }
 
 export default Register;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#f9fafd',
+
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
