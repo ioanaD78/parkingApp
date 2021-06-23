@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 import Input from '../components/form/Input';
 import LoginButton from '../components/form/LoginButton';
+import Bttn from '../components/form/Bttn';
 
 const Register = ({ navigation }) => {
 
@@ -40,11 +41,11 @@ const Register = ({ navigation }) => {
         onPress={() => alert('Register test')}
       />
 
-      <TouchableOpacity
-        style={styles.navButton}
-        onPress={() => navigation.navigate("Login")}>
-        <Text style={styles.navButtonText}>Have an account? Sign in!</Text>
-      </TouchableOpacity>
+
+      <Bttn
+        buttonTitle="Already have an account? Sign in!"
+        onPress={() => navigation.navigate("Login")}
+      />
     </View>
 
   );
@@ -54,7 +55,7 @@ export default Register;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#f9fafd',
+
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

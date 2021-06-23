@@ -4,6 +4,7 @@ import { windowHeight } from '../components/utils/WindowDimensions';
 
 import Input from '../components/form/Input';
 import LoginButton from '../components/form/LoginButton';
+import Bttn from '../components/form/Bttn';
 
 const Login = ({ navigation }) => {
 
@@ -32,14 +33,15 @@ const Login = ({ navigation }) => {
         onPress={() => alert('Main')}
       />
 
-      <TouchableOpacity style={styles.forgotButton} onPress={() => alert('Forgot test')}>
-        <Text style={styles.navButtonText}> Forgot Password </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.navButton}
-        onPress={() => navigation.replace("Register")}>
-        <Text style={styles.navButtonText}>Don't have an account? Sign up!</Text>
-      </TouchableOpacity>
+      <Bttn
+        buttonTitle="Forgot password"
+        onPress={() => alert('Main')}
+      />
+      <Bttn
+        buttonTitle="Don't have an account? Sign up!"
+        onPress={() => navigation.navigate("Register")}
+      />
+
     </View>
   );
 };
