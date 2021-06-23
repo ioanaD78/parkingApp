@@ -33,6 +33,7 @@ const Login = ({ navigation }) => {
         onPress={() => alert('Main')}
       />
 
+
       <Bttn
         buttonTitle="Forgot password"
         onPress={() => alert('Main')}
@@ -42,7 +43,8 @@ const Login = ({ navigation }) => {
         onPress={() => navigation.navigate("Register")}
       />
 
-    </View>
+
+    </View >
   );
 };
 

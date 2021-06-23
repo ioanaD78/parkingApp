@@ -1,10 +1,10 @@
 import React from 'react';
-import {View, TextInput, StyleSheet} from 'react-native';
-import {windowHeight, windowWidth} from '../utils/WindowDimensions';
+import { View, TextInput, StyleSheet } from 'react-native';
+import { windowHeight, windowWidth } from '../utils/WindowDimensions';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const Input = ({labelValue, placeholderText, iconType, ...rest}) => {
+const Input = ({ labelValue, placeholderText, iconType, ...rest }) => {
   return (
     <View style={styles.inputContainer}>
       <View style={styles.iconStyle}>
@@ -50,7 +50,6 @@ const styles = StyleSheet.create({
     padding: 10,
     flex: 1,
     fontSize: 16,
-    fontFamily: 'Lato-Regular',
     color: '#333',
     justifyContent: 'center',
     alignItems: 'center',

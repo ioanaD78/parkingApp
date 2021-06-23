@@ -23,10 +23,12 @@ const MainStackNavigator = () => {
         <Stack.Navigator screenOptions={screenOptionStyle} screenOptions={{
             headerShown: false
         }}>
+
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Home" component={Main} />
             <Stack.Screen name="Welcome!" component={Onboarding} />
             <Stack.Screen name="Register" component={Register} />
+
 
         </Stack.Navigator>
     );

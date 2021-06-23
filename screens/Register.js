@@ -1,55 +1,100 @@
+import { Component } from 'react';
 import * as React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 import Input from '../components/form/Input';
 import LoginButton from '../components/form/LoginButton';
+
 import Bttn from '../components/form/Bttn';
 
-const Register = ({ navigation }) => {
-
-  return (
-
-    <View style={styles.container}>
-      <Image
-        source={require('../images/5.png')}
-        style={styles.logo}
-      />
-      <Text style={styles.text}>Create an account</Text>
-
-      <Input
-        placeholderText="Full name"
-        iconType="person-outline"
-        autoCapitalize="words"
-        autoCorrect={false}
-      />
-      <Input
-        placeholderText="Email"
-        iconType="mail-outline"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        autoCorrect={false}
-      />
-
-      <Input
-        placeholderText="Password"
-        iconType="lock-closed-outline"
-        secureTextEntry={true}
-      />
-
-      <LoginButton
-        buttonTitle="Sign Up"
-        onPress={() => alert('Register test')}
-      />
+class Register extends Component {
 
 
-      <Bttn
-        buttonTitle="Already have an account? Sign in!"
-        onPress={() => navigation.navigate("Login")}
-      />
-    </View>
+  constructor() {
+    super();
+    this.state = {
+      email: '',
+      name: '',
+      password: ''
+    }
+  }
 
-  );
-};
+  updateValue(text, field) {
+    if (field == 'name') {
+      this.setState({
+        name: text,
+      })
+    }
+    else if (field == 'email') {
+      this.setState({
+        email: text,
+      })
+    }
+    else if (field == 'password') {
+      this.setState({
+        password: text,
+      })
+    }
+  }
+
+  submit() {
+    let collection = {}
+    collection.email = this.state.email,
+      collection.password = this.state.password,
+      collection.name = this.state.name
+    console.log(collection);
+
+    fetch('http://192.168.56.1/register', {
+      method: 'POST',
+      body: JSON.stringify(collection),
+      header: new Headers({
+        'Content-Type': 'application/json'
+      })
+    }).then(res => res.json())
+      .catch(error => console.error('Error:', error))
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Image
+          source={require('../images/5.png')}
+          style={styles.logo}
+        />
+        <Text style={styles.text}>Create an account</Text>
+
+        <Input
+          placeholderText="Full name"
+          iconType="person-outline"
+          autoCapitalize="words"
+          autoCorrect={false}
+          onChangeText={(text) => this.updateValue(text, 'name')}
+        />
+        <Input
+          placeholderText="Email"
+          iconType="mail-outline"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          autoCorrect={false}
+          onChangeText={(text) => this.updateValue(text, 'email')}
+        />
+
+        <LoginButton
+          buttonTitle="Sign Up"
+          onPress={() => this.submit()}
+        />
+
+        <Bttn
+          buttonTitle="Already have an account? Sign in!"
+          onPress={() => navigation.navigate("Login")}
+        />
+      </View>
+
+
+
+    )
+  }
+}
 
 export default Register;
 
