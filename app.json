@@ -1,9 +1,9 @@
 {
-  "name": "parking",
-  "displayName": "parking",
+  "name": "parkingApp",
+  "displayName": "parkingApp",
   "expo": {
-    "name": "parking",
-    "slug": "parking",
+    "name": "parkingApp",
+    "slug": "parkingApp",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
