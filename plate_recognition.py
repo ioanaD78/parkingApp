@@ -1,5 +1,5 @@
 from flask import Flask, jsonify
-
+import json
 import cv2
 from matplotlib import pyplot as plt
 import numpy as np
@@ -46,7 +46,7 @@ def plateRecognition():
         if len(approx) == 4:
             location = approx
             break
-
+    location
     # creating a blank mask the same size as the original image
     mask = np.zeros(gray.shape, np.uint8)
     # drawing the shape found at the previously found location
@@ -74,7 +74,7 @@ def plateRecognition():
     str = ' '.join(result)
     str.replace(" ", "")
     print(str)
-    return(str)
+    return (str)
 
 
 app = Flask(__name__)
@@ -83,7 +83,27 @@ app = Flask(__name__)
 @app.route('/lpRecognition')
 def serve():
 
-    return jsonify({"lpRecognition": plateRecognition()})
+    return jsonify(lpRecognition=plateRecognition())
 
 
 app.run(host="0.0.0.0", port=80)
+
+##### pip install Flask #####
+
+# from datetime import datetime
+# from flask import Flask, jsonify
+
+
+# def timeNow():
+#     return datetime.now().strftime('%Y-%m-%d %H:%M:%S').split(" ")[1]
+
+
+# app = Flask(__name__)
+
+
+# @app.route('/time')  # http://127.0.0.1/time
+# def serve():
+#     return jsonify({"time": timeNow()})
+
+
+# app.run(host="0.0.0.0", port=80)

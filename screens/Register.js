@@ -1,60 +1,119 @@
-import { Component } from 'react';
-import * as React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import React, { Component } from 'react';
+
+import { StyleSheet, Image, View, Alert, Text } from 'react-native';
 
 import Input from '../components/form/Input';
 import LoginButton from '../components/form/LoginButton';
 import Bttn from '../components/form/Bttn';
+class SignUp extends Component {
 
-const Register = ({ navigation }) => {
+  constructor(props) {
 
-  return (
-    <View style={styles.container}>
-      <Image
-        source={require('../images/5.png')}
-        style={styles.logo}
-      />
-      <Text style={styles.text}>Create an account</Text>
+    super(props)
 
-      <Input
-        placeholderText="Full name"
-        iconType="person-outline"
-        autoCapitalize="words"
-        autoCorrect={false}
-        onChangeText={(text) => this.updateValue(text, 'name')}
-      />
-      <Input
-        placeholderText="Email"
-        iconType="mail-outline"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        autoCorrect={false}
-        onChangeText={(text) => this.updateValue(text, 'email')}
-      />
+    this.state = {
+
+      userName: '',
+      userEmail: '',
+      userPass: ''
+
+    }
+
+  }
+
+  Register = () => {
 
 
-      <Input
-        placeholderText="Password"
-        iconType="lock-closed-outline"
-        secureTextEntry={true}
-        onChangeText={(text) => this.updateValue(text, 'password')}
-      />
-
-      <LoginButton
-        buttonTitle="Sign Up"
-        onPress={() => this.submit()}
-      />
+    const { userName } = this.state;
+    const { userEmail } = this.state;
+    const { userPass } = this.state;
 
 
-      <Bttn
-        buttonTitle="Already have an account? Sign in!"
-        onPress={() => navigation.navigate("Login")}
-      />
-    </View >
-  )
+
+    fetch('http://192.168.1.2:80/driver/register.php', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+
+        name: userName,
+
+        email: userEmail,
+
+        password: userPass
+
+      })
+
+    }).then((response) => response.text())
+      .then((responseText) => {
+
+        // Showing response message coming from server after inserting records.
+        Alert.alert(responseText);
+
+      }).catch((error) => {
+        console.error(error);
+      });
+
+
+  }
+
+  render() {
+    return (
+
+      <View style={styles.container}>
+        <Image
+          source={require('../images/5.png')}
+          style={styles.logo}
+        />
+        <Text style={styles.text}>Create an account</Text>
+
+        <Input
+          placeholderText="Full name"
+          iconType="person-outline"
+          autoCapitalize="words"
+          autoCorrect={false}
+          onChangeText={userName => this.setState({ userName })}
+        />
+        <Input
+          placeholderText="Email"
+          iconType="mail-outline"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          autoCorrect={false}
+          onChangeText={userEmail => this.setState({ userEmail })}
+        />
+
+
+        <Input
+          placeholderText="Password"
+          iconType="lock-closed-outline"
+          secureTextEntry={true}
+          onChangeText={userPass => this.setState({ userPass })}
+        />
+
+        <LoginButton
+          buttonTitle="Sign Up"
+          onPress={this.Register}
+        />
+
+        <Bttn
+          buttonTitle="Already have an account? Sign in!"
+          onPress={() =>
+            this.props.navigation.navigate('Login')
+          }
+        />
+      </View>
+
+
+
+
+    );
+  }
 }
 
-export default Register;
+export default SignUp;
 
 const styles = StyleSheet.create({
   container: {
