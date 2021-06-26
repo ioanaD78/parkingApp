@@ -1,67 +1,61 @@
 import React, { Component } from 'react';
-
-import { StyleSheet, Image, View, Alert, Text } from 'react-native';
-
+import {
+  StyleSheet, Text, Image, View, TouchableOpacity, Vibration, TextInput,
+} from 'react-native';
 import Input from '../components/form/Input';
 import LoginButton from '../components/form/LoginButton';
 import Bttn from '../components/form/Bttn';
-class SignUp extends Component {
+class Register extends Component {
 
-  constructor(props) {
-
-    super(props)
-
+  constructor() {
+    super();
     this.state = {
-
-      userName: '',
-      userEmail: '',
-      userPass: ''
-
+      email: '',
+      name: '',
+      password: '',
     }
-
   }
 
-  Register = () => {
-
-
-    const { userName } = this.state;
-    const { userEmail } = this.state;
-    const { userPass } = this.state;
-
-
-
-    fetch('http://192.168.1.2:80/find-the-driver/register.php', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-
-        name: userName,
-
-        email: userEmail,
-
-        password: userPass
-
+  updateValue(text, field) {
+    if (field == 'name') {
+      this.setState({
+        name: text,
       })
+    }
+    else if (field == 'email') {
+      this.setState({
+        email: text,
+      })
+    }
+    else if (field == 'password') {
+      this.setState({
+        password: text,
+      })
+    }
+  }
 
-    }).then((response) => response.text())
-      .then((responseText) => {
+  submit() {
+    let collection = {}
+    collection.name = this.state.name,
+      collection.email = this.state.email,
+      collection.password = this.state.password,
+      console.warn(collection);
 
-        // Showing response message coming from server after inserting records.
-        Alert.alert(responseText);
+    var url = 'http://192.168.1.2:80/register';
 
-      }).catch((error) => {
-        console.error(error);
-      });
-
-
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(collection),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    }).then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(response => console.log('Success:', response));
   }
 
   render() {
     return (
-
       <View style={styles.container}>
         <Image
           source={require('../images/5.png')}
@@ -74,7 +68,7 @@ class SignUp extends Component {
           iconType="person-outline"
           autoCapitalize="words"
           autoCorrect={false}
-          onChangeText={userName => this.setState({ userName })}
+          onChangeText={(text) => this.updateValue(text, 'name')}
         />
         <Input
           placeholderText="Email"
@@ -82,7 +76,7 @@ class SignUp extends Component {
           keyboardType="email-address"
           autoCapitalize="none"
           autoCorrect={false}
-          onChangeText={userEmail => this.setState({ userEmail })}
+          onChangeText={(text) => this.updateValue(text, 'email')}
         />
 
 
@@ -90,30 +84,74 @@ class SignUp extends Component {
           placeholderText="Password"
           iconType="lock-closed-outline"
           secureTextEntry={true}
-          onChangeText={userPass => this.setState({ userPass })}
+          onChangeText={(text) => this.updateValue(text, 'password')}
         />
 
         <LoginButton
           buttonTitle="Sign Up"
-          onPress={this.Register}
-        />
-
-        <Bttn
-          buttonTitle="Already have an account? Sign in!"
-          onPress={() =>
-            this.props.navigation.navigate('Login')
-          }
+          onPress={() => this.submit()}
         />
       </View>
-
-
-
-
-    );
+    )
   }
 }
+export default Register;
 
-export default SignUp;
+// import { Component } from 'react';
+// import * as React from 'react';
+// import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
+
+
+
+// const Register = ({ navigation }) => {
+
+//   return (
+//     <View style={styles.container}>
+//       <Image
+//         source={require('../images/5.png')}
+//         style={styles.logo}
+//       />
+//       <Text style={styles.text}>Create an account</Text>
+
+//       <Input
+//         placeholderText="Full name"
+//         iconType="person-outline"
+//         autoCapitalize="words"
+//         autoCorrect={false}
+//         onChangeText={(text) => this.updateValue(text, 'name')}
+//       />
+//       <Input
+//         placeholderText="Email"
+//         iconType="mail-outline"
+//         keyboardType="email-address"
+//         autoCapitalize="none"
+//         autoCorrect={false}
+//         onChangeText={(text) => this.updateValue(text, 'email')}
+//       />
+
+
+//       <Input
+//         placeholderText="Password"
+//         iconType="lock-closed-outline"
+//         secureTextEntry={true}
+//         onChangeText={(text) => this.updateValue(text, 'password')}
+//       />
+
+//       <LoginButton
+//         buttonTitle="Sign Up"
+//         onPress={() => this.submit()}
+//       />
+
+
+//       <Bttn
+//         buttonTitle="Already have an account? Sign in!"
+//         onPress={() => navigation.navigate("Login")}
+//       />
+//     </View >
+//   )
+// }
+
+// export default Register;
 
 const styles = StyleSheet.create({
   container: {
