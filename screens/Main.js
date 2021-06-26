@@ -14,7 +14,7 @@ class Main extends Component {
       }
 
     })
-      .then((response) => response.json())
+      .then((response) => response.text())
       .then((responseJson) => {
         console.log(responseJson);
         this.setState({

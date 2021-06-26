@@ -1,12 +1,13 @@
 from flask import Flask, jsonify
-import json
+
 import cv2
 from matplotlib import pyplot as plt
 import numpy as np
 import imutils
 import easyocr
-
+import mysql.connector
 import logging
+
 logging.basicConfig(filename='logs.log', level=logging.DEBUG)
 
 
@@ -17,13 +18,13 @@ def plateRecognition():
     # changing image to grayscale
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-    #plt.imshow(cv2.cvtColor(gray, cv2.COLOR_BGR2RGB))
+    # plt.imshow(cv2.cvtColor(gray, cv2.COLOR_BGR2RGB))
 
     # applying filter for noise reduction
     noise_filter = cv2.bilateralFilter(gray, 11, 17, 17)
     # detecting edges within the image
     edge = cv2.Canny(noise_filter, 30, 200)
-    #plt.imshow(cv2.cvtColor(edge, cv2.COLOR_BGR2RGB))
+    # plt.imshow(cv2.cvtColor(edge, cv2.COLOR_BGR2RGB))
 
     # scanning through the immage and trying to find contours
     # returning a tree of results
@@ -54,7 +55,7 @@ def plateRecognition():
     # overlaying the mask over the original image => displaying just the license plate
     newImg = cv2.bitwise_and(img, img, mask=mask)
 
-    #plt.imshow(cv2.cvtColor(newImg, cv2.COLOR_BGR2RGB))
+    # plt.imshow(cv2.cvtColor(newImg, cv2.COLOR_BGR2RGB))
 
     # getting the coordinates representing the photo area != black
     (x, y) = np.where(mask == 255)
@@ -64,23 +65,31 @@ def plateRecognition():
     (x2, y2) = (np.max(x), np.max(y))
     licensePlate = gray[x1: x2 - 10, y1: y2 - 10]
 
-    #plt.imshow(cv2.cvtColor(licensePlate, cv2.COLOR_BGR2RGB))
+    # plt.imshow(cv2.cvtColor(licensePlate, cv2.COLOR_BGR2RGB))
 
     reader = easyocr.Reader(['ro'])
     result = reader.readtext(licensePlate)
     result
     result = result[0][1]
 
-    str = ' '.join(result)
+    str = ''.join(result)
     str.replace(" ", "")
     print(str)
-    return (str)
+
+    cnx = mysql.connector.connect(
+        user='root', password='1a2b3c!', database='python-login')
+    cursor = cnx.cursor(prepared=True)
+    stmt = "SELECT phone FROM app_users WHERE plate = %s"  # (1)
+    cursor.execute(stmt, (str,))
+    row = cursor.fetchone()
+    phone = row[0]
+    return (phone)
 
 
 app = Flask(__name__)
 
 
-@app.route('/lpRecognition')
+@ app.route('/lpRecognition')
 def serve():
 
     return jsonify(lpRecognition=plateRecognition())
@@ -88,22 +97,22 @@ def serve():
 
 app.run(host="0.0.0.0", port=80)
 
-##### pip install Flask #####
+# ##### pip install Flask #####
 
-# from datetime import datetime
-# from flask import Flask, jsonify
-
-
-# def timeNow():
-#     return datetime.now().strftime('%Y-%m-%d %H:%M:%S').split(" ")[1]
+# # from datetime import datetime
+# # from flask import Flask, jsonify
 
 
-# app = Flask(__name__)
+# # def timeNow():
+# #     return datetime.now().strftime('%Y-%m-%d %H:%M:%S').split(" ")[1]
 
 
-# @app.route('/time')  # http://127.0.0.1/time
-# def serve():
-#     return jsonify({"time": timeNow()})
+# # app = Flask(__name__)
 
 
-# app.run(host="0.0.0.0", port=80)
+# # @app.route('/time')  # http://127.0.0.1/time
+# # def serve():
+# #     return jsonify({"time": timeNow()})
+
+
+# # app.run(host="0.0.0.0", port=80)

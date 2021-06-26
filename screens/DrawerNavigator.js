@@ -5,7 +5,6 @@ import { DrawerDesign } from './DrawerDesign';
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { StyleSheet } from 'react-native';
 import { ContactStackNavigator } from "./Navigation";
-import { HomeStackNavigator } from "./Navigation";
 import { ProfileStackNavigator } from "./Navigation";
 import { MainStackNavigator } from "./Navigation";
 

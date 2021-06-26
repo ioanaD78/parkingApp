@@ -23,8 +23,9 @@ const MainStackNavigator = () => {
         <Stack.Navigator screenOptions={screenOptionStyle} screenOptions={{
             headerShown: false
         }}>
-            <Stack.Screen name="Register" component={Register} />
             <Stack.Screen name="Home" component={Main} />
+            <Stack.Screen name="Register" component={Register} />
+
 
             <Stack.Screen name="Login" component={Login} />
 
@@ -37,7 +38,7 @@ const MainStackNavigator = () => {
 
 const ProfileStackNavigator = () => {
     return (
-        <Stack.Navigator screenOptions={screenOptionStyle}>
+        <Stack.Navigator screenOptions={screenOptionStyle} >
             <Stack.Screen name="Profile" component={Profile} />
         </Stack.Navigator>
     );

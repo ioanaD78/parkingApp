@@ -30,7 +30,7 @@ class SignUp extends Component {
 
 
 
-    fetch('http://192.168.1.2:80/driver/register.php', {
+    fetch('http://192.168.1.2:80/find-the-driver/register.php', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

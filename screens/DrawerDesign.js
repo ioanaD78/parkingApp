@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { View, StyleSheet } from 'react-native';
-import { Title, Caption, Drawer } from 'react-native-paper';
+import { View, StyleSheet, Image } from 'react-native';
+import { Drawer } from 'react-native-paper';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 
 import UserAvatar from 'react-native-avatar-generator';
@@ -16,20 +16,12 @@ export function DrawerDesign(props) {
           <View style={styles.userInfoSection}>
             <View style={{ flexDirection: 'row', marginTop: 40 }}>
 
-              <UserAvatar styles={styles.avatar}
-                size={60}
-                firstName="John" //de scos din DB dupa cont
-                lastName="Doe"
+              <Image
+                source={require('../images/5.png')}
+                style={styles.logo}
               />
 
-              <View style={{ marginLeft: 15, flexDirection: 'column' }}>
-                <Title styles={styles.title}>
-                  Name Surname
-                </Title>
-                <Caption styles={styles.caption}>
-                  License plate
-                </Caption>
-              </View>
+
             </View>
           </View>
 
@@ -135,8 +127,9 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 16,
   },
-  avatar: {
-    fontWeight: "bold",
-    color: "#fff",
-  }
+  logo: {
+    height: 200,
+    width: 200,
+    resizeMode: 'cover',
+  },
 });
