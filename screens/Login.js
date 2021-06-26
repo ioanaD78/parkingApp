@@ -14,12 +14,6 @@ import { windowHeight } from '../components/utils/WindowDimensions';
 export default class login extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'Login',
-    headerRight:
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Home')}
-        style={{ margin: 10, backgroundColor: 'orange', padding: 10 }}>
-        <Text style={{ color: '#ffffff' }}>Home</Text>
-      </TouchableOpacity>
 
   });
   constructor(props) {
@@ -35,13 +29,15 @@ export default class login extends Component {
     const { userEmail } = this.state;
     const { userPass } = this.state;
 
-    if (userEmail == "") {
-      //alert("Please enter Email address");
-      this.setState({ email: 'Please enter Email address' })
+    if (userEmail == "" && userPass == "") {
+      alert("Please enter your credentials!")
+    }
+    else if (userEmail == "") {
+      alert("Please enter your e-mail address!")
     }
 
     else if (userPass == "") {
-      this.setState({ password: 'Please enter password' })
+      alert("Please enter your password!")
     }
     else {
 
