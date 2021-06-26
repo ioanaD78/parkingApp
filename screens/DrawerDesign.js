@@ -81,7 +81,7 @@ export function DrawerDesign(props) {
             />
           )}
           label="Sign Out"
-          onPress={() => alert('Sign out test')}
+          onPress={() => { props.navigation.navigate('Login') }}
         />
       </Drawer.Section>
     </View>

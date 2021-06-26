@@ -3,11 +3,14 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View, TouchableOpacity, TextInput, Button, Keyboard
+  View, TouchableOpacity, Image, Keyboard
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
-
+import Input from '../components/form/Input';
+import LoginButton from '../components/form/LoginButton';
+import Bttn from '../components/form/Bttn';
+import { windowHeight } from '../components/utils/WindowDimensions';
 export default class login extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'Login',
@@ -27,36 +30,28 @@ export default class login extends Component {
     }
   }
 
-  login = () => {
+  Login = () => {
+
     const { userEmail } = this.state;
     const { userPass } = this.state;
-    // const { userEmail, userPass } = this.state;
-    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
     if (userEmail == "") {
       //alert("Please enter Email address");
       this.setState({ email: 'Please enter Email address' })
-
-    }
-
-    else if (reg.test(userEmail) === false) {
-      //alert("Email is Not Correct");
-      this.setState({ email: 'Email is Not Correct' })
-      return false;
     }
 
     else if (userPass == "") {
-      this.setState({ email: 'Please enter password' })
+      this.setState({ password: 'Please enter password' })
     }
     else {
 
       fetch('http://192.168.1.2:80/find-the-driver/login.php', {
-        method: 'post',
+        method: 'POST',
         headers: {
-          Accept: 'application/json',
+          'Accept': 'application/json',
           'Content-type': 'application/json'
         },
         body: JSON.stringify({
-          // we will pass our input data to server
           email: userEmail,
           password: userPass
         })
@@ -64,12 +59,11 @@ export default class login extends Component {
       })
         .then((response) => response.text())
         .then((responseJson) => {
+          //console.warn(responseJson);
           if (responseJson == "ok") {
-            // redirect to profile page
-            alert("Successfully Login");
-            this.props.navigation.navigate("Profile");
+            alert("E-mail or password might be incorrect. Please try again.");
           } else {
-            alert("Wrong Login Details");
+            this.props.navigation.navigate("Contact");
           }
         })
         .catch((error) => {
@@ -84,43 +78,154 @@ export default class login extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={{ padding: 10, margin: 10, color: 'red' }}>{this.state.email}</Text>
+        <Image
+          source={require('../images/5.png')}
+          style={styles.logo}
+        />
+        <Text style={styles.text}> Log In </Text>
 
-        <TextInput
-          placeholder="Enter Email"
-          style={{ width: 200, margin: 10 }}
+        <Input
+          placeholderText="Email"
+          iconType="mail-outline"
+          keyboardType="email-address"
+          autoCapitalize="none"
           onChangeText={userEmail => this.setState({ userEmail })}
         />
-
-        <TextInput
-          placeholder="Enter Password"
-          style={{ width: 200, margin: 10 }}
+        <Input
+          placeholderText="Password"
+          iconType="lock-closed-outline"
+          secureTextEntry={true}
           onChangeText={userPass => this.setState({ userPass })}
+        />
 
+        <LoginButton
+          buttonTitle="Sign In"
+          onPress={this.Login}
         />
 
 
-        <TouchableOpacity
-          onPress={this.login}
-          style={{ width: 200, padding: 10, backgroundColor: 'magenta', alignItems: 'center' }}>
-          <Text style={{ color: 'white' }}>Login</Text>
-        </TouchableOpacity>
+        <Bttn
+          buttonTitle="Forgot password"
+          onPress={() => alert('Main')}
+        />
+        <Bttn
+          buttonTitle="Don't have an account? Sign up!"
+          onPress={() => this.props.navigation.navigate('Register')}
+        />
 
 
-      </View>
+      </View >
 
     );
   }
 }
-
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    padding: 15,
+    marginTop: windowHeight / 30,
   },
-
+  logo: {
+    height: 300,
+    width: 300,
+    resizeMode: 'cover',
+  },
+  text: {
+    fontSize: 30,
+    marginBottom: 10,
+    color: '#34548a',
+  },
+  navButton: {
+    marginTop: 15,
+  },
+  forgotButton: {
+    marginVertical: 35,
+  },
+  navButtonText: {
+    marginBottom: -30,
+    fontSize: 18,
+    fontWeight: '500',
+    color: '#2e64e5',
+  },
 });
 
 AppRegistry.registerComponent('login', () => login);
+
+// import * as React from 'react';
+// import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
+// import { windowHeight } from '../components/utils/WindowDimensions';
+
+
+// const Login = ({ navigation }) => {
+
+//   return (
+    // <View style={styles.container}>
+    //   <Image
+    //     source={require('../images/5.png')}
+    //     style={styles.logo}
+    //   />
+    //   <Text style={styles.text}> Log In </Text>
+
+    //   <Input
+    //     placeholderText="Email"
+    //     iconType="mail-outline"
+    //     keyboardType="email-address"
+    //     autoCapitalize="none"
+    //   />
+    //   <Input
+    //     placeholderText="Password"
+    //     iconType="lock-closed-outline"
+    //     secureTextEntry={true}
+    //   />
+
+    //   <LoginButton
+    //     buttonTitle="Sign In"
+    //     onPress={() => alert('Main')}
+    //   />
+
+
+    //   <Bttn
+    //     buttonTitle="Forgot password"
+    //     onPress={() => alert('Main')}
+    //   />
+    //   <Bttn
+    //     buttonTitle="Don't have an account? Sign up!"
+    //     onPress={() => navigation.navigate("Register")}
+    //   />
+
+
+    // </View >
+//   );
+// };
+
+// export default Login;
+
+// const styles = StyleSheet.create({
+//   container: {
+//     alignItems: 'center',
+//     padding: 15,
+//     marginTop: windowHeight / 30,
+//   },
+//   logo: {
+//     height: 300,
+//     width: 300,
+//     resizeMode: 'cover',
+//   },
+//   text: {
+//     fontSize: 30,
+//     marginBottom: 10,
+//     color: '#34548a',
+//   },
+//   navButton: {
+//     marginTop: 15,
+//   },
+//   forgotButton: {
+//     marginVertical: 35,
+//   },
+//   navButtonText: {
+//     marginBottom: -30,
+//     fontSize: 18,
+//     fontWeight: '500',
+//     color: '#2e64e5',
+//   },
+// });

@@ -23,17 +23,22 @@ const MainStackNavigator = () => {
         <Stack.Navigator screenOptions={screenOptionStyle} screenOptions={{
             headerShown: false
         }}>
-            <Stack.Screen name="Home" component={Main} />
-            <Stack.Screen name="Register" component={Register} />
-
-
-            <Stack.Screen name="Login" component={Login} />
-
             <Stack.Screen name="Welcome!" component={Onboarding} />
-
-
+            <Stack.Screen name="Register" component={Register} />
+            <Stack.Screen name="Login" component={Login} />
         </Stack.Navigator>
     );
+}
+
+const HomeStackNavigator = () => {
+    return (
+        <Stack.Navigator screenOptions={screenOptionStyle} screenOptions={{
+            headerShown: false
+        }}>
+
+            <Stack.Screen name="Home" component={Main} />
+        </Stack.Navigator>
+    )
 }
 
 const ProfileStackNavigator = () => {
@@ -52,4 +57,4 @@ const ContactStackNavigator = () => {
     );
 }
 
-export { MainStackNavigator, ContactStackNavigator, ProfileStackNavigator };
+export { MainStackNavigator, ContactStackNavigator, ProfileStackNavigator, HomeStackNavigator };
