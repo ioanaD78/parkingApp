@@ -1,55 +1,120 @@
-import * as React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { windowHeight } from '../components/utils/WindowDimensions';
+import React, { Component } from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View, TouchableOpacity, Image, Keyboard
+} from 'react-native';
+import { StackNavigator } from 'react-navigation';
 
 import Input from '../components/form/Input';
 import LoginButton from '../components/form/LoginButton';
 import Bttn from '../components/form/Bttn';
+import { windowHeight } from '../components/utils/WindowDimensions';
+export default class login extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    title: 'Login',
 
-const Login = ({ navigation }) => {
+  });
+  constructor(props) {
+    super(props)
+    this.state = {
+      userEmail: '',
+      userPass: ''
+    }
+  }
 
-  return (
-    <View style={styles.container}>
-      <Image
-        source={require('../images/5.png')}
-        style={styles.logo}
-      />
-      <Text style={styles.text}> Log In </Text>
+  Login = () => {
 
-      <Input
-        placeholderText="Email"
-        iconType="mail-outline"
-        keyboardType="email-address"
-        autoCapitalize="none"
-      />
-      <Input
-        placeholderText="Password"
-        iconType="lock-closed-outline"
-        secureTextEntry={true}
-      />
+    const { userEmail } = this.state;
+    const { userPass } = this.state;
 
-      <LoginButton
-        buttonTitle="Sign In"
-        onPress={() => alert('Main')}
-      />
+    if (userEmail == "" && userPass == "") {
+      alert("Please enter your credentials!")
+    }
+    else if (userEmail == "") {
+      alert("Please enter your e-mail address!")
+    }
+
+    else if (userPass == "") {
+      alert("Please enter your password!")
+    }
+    else {
+
+      fetch('http://192.168.1.2:80/find-the-driver/login.php', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: userEmail,
+          password: userPass
+        })
+
+      })
+        .then((response) => response.text())
+        .then((responseJson) => {
+          //console.warn(responseJson);
+          if (responseJson == "ok") {
+            alert("E-mail or password might be incorrect. Please try again.");
+          } else {
+            this.props.navigation.navigate("Contact");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
 
 
-      <Bttn
-        buttonTitle="Forgot password"
-        onPress={() => alert('Main')}
-      />
-      <Bttn
-        buttonTitle="Don't have an account? Sign up!"
-        onPress={() => navigation.navigate("Register")}
-      />
+    Keyboard.dismiss();
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Image
+          source={require('../images/5.png')}
+          style={styles.logo}
+        />
+        <Text style={styles.text}> Log In </Text>
+
+        <Input
+          placeholderText="Email"
+          iconType="mail-outline"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          onChangeText={userEmail => this.setState({ userEmail })}
+        />
+        <Input
+          placeholderText="Password"
+          iconType="lock-closed-outline"
+          secureTextEntry={true}
+          onChangeText={userPass => this.setState({ userPass })}
+        />
+
+        <LoginButton
+          buttonTitle="Sign In"
+          onPress={this.Login}
+        />
 
 
-    </View >
-  );
-};
+        <Bttn
+          buttonTitle="Forgot password"
+          onPress={() => alert('Main')}
+        />
+        <Bttn
+          buttonTitle="Don't have an account? Sign up!"
+          onPress={() => this.props.navigation.navigate('Register')}
+        />
 
-export default Login;
 
+      </View >
+
+    );
+  }
+}
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
@@ -79,3 +144,5 @@ const styles = StyleSheet.create({
     color: '#2e64e5',
   },
 });
+
+AppRegistry.registerComponent('login', () => login);

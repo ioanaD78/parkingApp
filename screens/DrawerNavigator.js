@@ -5,16 +5,16 @@ import { DrawerDesign } from './DrawerDesign';
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { StyleSheet } from 'react-native';
 import { ContactStackNavigator } from "./Navigation";
-import { HomeStackNavigator } from "./Navigation";
 import { ProfileStackNavigator } from "./Navigation";
 import { MainStackNavigator } from "./Navigation";
-
+import { HomeStackNavigator } from "./Navigation";
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
     return (
         <Drawer.Navigator drawerContent={props => <DrawerDesign{...props} />}>
-            <Drawer.Screen name="Home" component={MainStackNavigator} />
+            <Drawer.Screen name="Main" component={MainStackNavigator} />
+            <Drawer.Screen name="Home" component={HomeStackNavigator} />
             <Drawer.Screen name="Profile" component={ProfileStackNavigator} />
             <Drawer.Screen name="Contact" component={ContactStackNavigator} />
         </Drawer.Navigator>
