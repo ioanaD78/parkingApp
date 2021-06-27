@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+# FILE ALSO IN XAMPP - HTDOCS FOLDER
 
 import cv2
 from matplotlib import pyplot as plt
@@ -74,28 +74,31 @@ def plateRecognition():
 
     str = ''.join(result)
     str.replace(" ", "")
-    print(str)
+    # print(str)
 
     cnx = mysql.connector.connect(
         user='root', password='1a2b3c!', database='python-login')
     cursor = cnx.cursor(prepared=True)
-    stmt = "SELECT phone FROM app_users WHERE plate = %s"  # (1)
+    stmt = "SELECT phone FROM register WHERE plate = %s"  # (1)
     cursor.execute(stmt, (str,))
     row = cursor.fetchone()
     phone = row[0]
-    return (phone)
+    print(phone)
 
 
-app = Flask(__name__)
+plateRecognition()
 
 
-@ app.route('/lpRecognition')
-def serve():
-
-    return jsonify(lpRecognition=plateRecognition())
+# app = Flask(__name__)
 
 
-app.run(host="0.0.0.0", port=80)
+# @ app.route('/lpRecognition')
+# def serve():
+
+#     return jsonify(lpRecognition=plateRecognition())
+
+
+# app.run(host="0.0.0.0", port=90)
 
 # ##### pip install Flask #####
 

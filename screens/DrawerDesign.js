@@ -58,6 +58,21 @@ export function DrawerDesign(props) {
               <DrawerItem
                 icon={({ color, size }) => (
                   <Icon
+                    name="scan-circle-outline"
+                    color={color}
+                    size={size}
+                  />
+                )}
+                label="Scan"
+                onPress={() => { props.navigation.navigate('Camera') }}
+              />
+            </Drawer.Section>
+
+
+            <Drawer.Section style={styles.drawerSection}>
+              <DrawerItem
+                icon={({ color, size }) => (
+                  <Icon
                     name="mail-outline"
                     color={color}
                     size={size}

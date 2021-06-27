@@ -7,6 +7,9 @@ import Contact from "./Contact";
 import Register from "./Register";
 import Login from "./Login";
 import Onboarding from "./Onboarding";
+import UpdateLPN from "./UpdateLPN";
+import UpdatePhone from "./UpdatePhone";
+import Camera from "./Camera";
 
 const Stack = createStackNavigator();
 
@@ -57,4 +60,31 @@ const ContactStackNavigator = () => {
     );
 }
 
-export { MainStackNavigator, ContactStackNavigator, ProfileStackNavigator, HomeStackNavigator };
+const UpdateLPNStackNavigator = () => {
+    return (
+        <Stack.Navigator screenOptions={screenOptionStyle}>
+            <Stack.Screen name="UpdateLPN" component={UpdateLPN} />
+        </Stack.Navigator>
+    );
+}
+
+const UpdatePhoneStackNavigator = () => {
+    return (
+        <Stack.Navigator screenOptions={screenOptionStyle}>
+            <Stack.Screen name="UpdatePhone" component={UpdatePhone} />
+        </Stack.Navigator>
+    );
+}
+
+const CameraStackNavigator = () => {
+    return (
+        <Stack.Navigator screenOptions={screenOptionStyle}>
+            <Stack.Screen name="Camera" component={Camera} />
+        </Stack.Navigator>
+    );
+}
+
+export {
+    MainStackNavigator, ContactStackNavigator, ProfileStackNavigator, HomeStackNavigator,
+    UpdateLPNStackNavigator, UpdatePhoneStackNavigator, CameraStackNavigator
+};

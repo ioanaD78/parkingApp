@@ -8,6 +8,10 @@ import { ContactStackNavigator } from "./Navigation";
 import { ProfileStackNavigator } from "./Navigation";
 import { MainStackNavigator } from "./Navigation";
 import { HomeStackNavigator } from "./Navigation";
+import { UpdatePhoneStackNavigator } from "./Navigation";
+import { UpdateLPNStackNavigator } from "./Navigation";
+import { CameraStackNavigator } from "./Navigation";
+
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
@@ -17,6 +21,10 @@ const DrawerNavigator = () => {
             <Drawer.Screen name="Home" component={HomeStackNavigator} />
             <Drawer.Screen name="Profile" component={ProfileStackNavigator} />
             <Drawer.Screen name="Contact" component={ContactStackNavigator} />
+
+            <Drawer.Screen name="UpdateLPN" component={UpdateLPNStackNavigator} />
+            <Drawer.Screen name="UpdatePhone" component={UpdatePhoneStackNavigator} />
+            <Drawer.Screen name="Camera" component={CameraStackNavigator} />
         </Drawer.Navigator>
     );
 }

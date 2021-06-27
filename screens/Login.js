@@ -3,15 +3,14 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View, TouchableOpacity, Image, Keyboard
+  View, Image, Keyboard
 } from 'react-native';
-import { StackNavigator } from 'react-navigation';
 
 import Input from '../components/form/Input';
 import LoginButton from '../components/form/LoginButton';
 import Bttn from '../components/form/Bttn';
 import { windowHeight } from '../components/utils/WindowDimensions';
-export default class login extends Component {
+export default class Login extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'Login',
 
@@ -81,7 +80,7 @@ export default class login extends Component {
         <Text style={styles.text}> Log In </Text>
 
         <Input
-          placeholderText="Email"
+          placeholderText="E-mail"
           iconType="mail-outline"
           keyboardType="email-address"
           autoCapitalize="none"
@@ -99,11 +98,6 @@ export default class login extends Component {
           onPress={this.Login}
         />
 
-
-        <Bttn
-          buttonTitle="Forgot password"
-          onPress={() => alert('Main')}
-        />
         <Bttn
           buttonTitle="Don't have an account? Sign up!"
           onPress={() => this.props.navigation.navigate('Register')}
@@ -115,6 +109,9 @@ export default class login extends Component {
     );
   }
 }
+
+AppRegistry.registerComponent('Login', () => Login);
+
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
@@ -145,4 +142,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('login', () => login);
+
