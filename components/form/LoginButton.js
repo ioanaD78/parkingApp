@@ -14,7 +14,7 @@ export default LoginButton;
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    marginTop: 10,
+    marginTop: 6,
     width: '100%',
     height: windowHeight / 15,
     backgroundColor: '#2e64e5',

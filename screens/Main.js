@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Linking, Alert, Platform, Image } from 'react-native'
 
+import { windowHeight } from '../components/utils/WindowDimensions';
 class Main extends Component {
   state = {
     data: ''
   }
   componentDidMount = () => {
-    fetch('http://192.168.1.2:80/plateRecognition', {
+    fetch('http://192.168.1.2:80/find-the-driver/displayLPR.php', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -20,133 +21,97 @@ class Main extends Component {
         this.setState({
           data: responseJson
         })
+
       })
       .catch((error) => {
         console.error(error);
       });
+
+
   }
+
+  Call = phone => {
+    console.log('callNumber ----> ', phone);
+    let phoneNumber = phone;
+    if (Platform.OS !== 'android') {
+      phoneNumber = `telprompt:${this.state.data}`;
+    }
+    else {
+      phoneNumber = `tel:${this.state.data}`;
+    }
+    Linking.canOpenURL(phoneNumber)
+      .then(supported => {
+        if (!supported) {
+          Alert.alert('Phone number is not available');
+        } else {
+          return Linking.openURL(phoneNumber);
+        }
+      })
+      .catch(err => console.log(err));
+  };
+
   render() {
     return (
-      <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
+      <View style={styles.container}>
+        <Image
+          source={require('../images/5.png')}
+          style={styles.logo}
+        />
+        <Text style={styles.text}> Find the Driver </Text>
+        <Text style={styles.txt1}>
+          In a couple of seconds you will be able to
+        </Text>
+        <Text style={styles.txt}>
+          contact the driver.
+        </Text>
+        <Text style={styles.txt}>
+          The phone number is:
+        </Text>
+        <Text style={styles.phone} onPress={this.Call}>{this.state.data}</Text>
         <Text>
-          hi
-          {this.state.data.plateRecognition}
+
         </Text>
       </View>
     )
   }
 }
+
 export default Main;
 
-// import * as React from 'react';
-// import Icon from 'react-native-vector-icons/Ionicons';
-// import { View, TouchableOpacity, StyleSheet, ImagePickerIOS } from 'react-native';
-// import ImagePicker from 'react-native-image-crop-picker';
-
-// import { windowHeight, windowWidth } from '../components/utils/WindowDimensions'
-
-// //add header cu buton de menu
-
-// const mainScreen = ({ navigation }) => {
-
-//    const takePhoto = () => {
-
-//       ImagePicker.openCamera({
-//          width: 300,
-//          height: 400,
-//          cropping: true,
-//       }).then(image => {
-//          console.log(image);
-//       });
-
-//    }
-
-//    return (
-
-//       <View style={styles.container}>
-//          <TouchableOpacity style={styles.button}>
-//             <Icon.Button
-//                name="scan-circle-outline"
-//                size={300}
-//                color="#34548a"
-//                style={styles.button}
-//                onPress={takePhoto} />
-//          </TouchableOpacity>
-//       </View>
-
-//    );
-// };
-
-// const styles = StyleSheet.create({
-//    container: {
-//       flex: 1,
-//       justifyContent: "center",
-//       backgroundColor: "#fff",
-//       width: windowWidth,
-//       height: windowHeight,
-//       borderRadius: 5,
-//    },
-//    button: {
-//       alignItems: "center",
-//       backgroundColor: "#fff",
-//       paddingLeft: 17,
-//    },
-// });
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    padding: 15,
+    marginTop: windowHeight / 30,
+  },
+  logo: {
+    height: 300,
+    width: 300,
+    resizeMode: 'cover',
+  },
+  text: {
+    fontSize: 30,
+    marginBottom: 40,
+    color: '#34548a',
+    fontWeight: 'bold',
+  },
+  txt1: {
+    color: '#333',
+    fontSize: 20,
+    justifyContent: 'center',
+  },
+  txt: {
+    color: '#333',
+    marginBottom: 20,
+    fontSize: 20,
+    justifyContent: 'center',
+  },
+  phone: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    color: '#2e64e5',
+  }
+});
 
 
-// export default mainScreen;
 
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable prettier/prettier */
-
-/*
-Just make changes in line 28 to make the magic : - )
-*/
-
-
-// import React, { Component } from 'react';
-// import { View, Text, StyleSheet } from 'react-native';
-
-// const styles = StyleSheet.create({
-//   bigBlue: {
-//     color: 'blue',
-//     fontWeight: 'bold',
-//     fontSize: 50,
-//     backgroundColor: '#FF6666',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-//   red: {
-//     color: 'red',
-//   },
-// });
-
-// class HttpExample extends Component {
-//   state = {
-//     data: '',
-//   };
-//   componentDidMount = () => {
-//     fetch('http://192.168.1.2:80/time', {
-//       method: 'GET',
-//     })
-//       .then((response) => response.json())
-//       .then((responseJson) => {
-//         console.log(responseJson);
-//         this.setState({
-//           data: responseJson,
-//         });
-//       })
-//       .catch((error) => {
-//         console.error(error);
-//       });
-//   };
-//   render() {
-//     return (
-//       <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
-//         <Text style={styles.bigBlue}>{this.state.data.time}</Text>
-//         <Text style={styles.bigBlue}>plm</Text>
-//       </View>
-//     );
-//   }
-// }
-// export default HttpExample;

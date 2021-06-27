@@ -15,7 +15,9 @@ class SignUp extends Component {
 
       userName: '',
       userEmail: '',
-      userPass: ''
+      userPass: '',
+      userPhone: '',
+      userPlate: '',
 
     }
 
@@ -27,6 +29,8 @@ class SignUp extends Component {
     const { userName } = this.state;
     const { userEmail } = this.state;
     const { userPass } = this.state;
+    const { userPhone } = this.state;
+    const { userPlate } = this.state;
 
 
 
@@ -42,7 +46,11 @@ class SignUp extends Component {
 
         email: userEmail,
 
-        password: userPass
+        password: userPass,
+
+        phone: userPhone,
+
+        plate: userPlate
 
       })
 
@@ -84,13 +92,26 @@ class SignUp extends Component {
           autoCorrect={false}
           onChangeText={userEmail => this.setState({ userEmail })}
         />
-
-
         <Input
           placeholderText="Password"
           iconType="lock-closed-outline"
           secureTextEntry={true}
           onChangeText={userPass => this.setState({ userPass })}
+        />
+
+        <Input
+          placeholderText="Phone Number (eg. 0765656565)"
+          iconType="call-outline"
+          autoCapitalize="none"
+          autoCorrect={false}
+          onChangeText={userPhone => this.setState({ userPhone })}
+        />
+        <Input
+          placeholderText="License plate number (eg. BV 01BMI)"
+          iconType="car-sport-outline"
+          autoCapitalize="characters"
+          autoCorrect={false}
+          onChangeText={userPlate => this.setState({ userPlate })}
         />
 
         <LoginButton
@@ -124,7 +145,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   text: {
-    fontSize: 28,
+    fontSize: 25,
     marginBottom: 10,
     color: '#051d5f',
   },
@@ -150,8 +171,8 @@ const styles = StyleSheet.create({
     marginVertical: 15,
   },
   logo: {
-    height: 300,
-    width: 300,
+    height: 250,
+    width: 250,
     resizeMode: 'cover',
   },
 });

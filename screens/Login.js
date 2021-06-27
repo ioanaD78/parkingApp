@@ -3,15 +3,14 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View, TouchableOpacity, Image, Keyboard
+  View, Image, Keyboard
 } from 'react-native';
-import { StackNavigator } from 'react-navigation';
 
 import Input from '../components/form/Input';
 import LoginButton from '../components/form/LoginButton';
 import Bttn from '../components/form/Bttn';
 import { windowHeight } from '../components/utils/WindowDimensions';
-export default class login extends Component {
+export default class Login extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'Login',
 
@@ -81,7 +80,7 @@ export default class login extends Component {
         <Text style={styles.text}> Log In </Text>
 
         <Input
-          placeholderText="Email"
+          placeholderText="E-mail"
           iconType="mail-outline"
           keyboardType="email-address"
           autoCapitalize="none"
@@ -99,11 +98,6 @@ export default class login extends Component {
           onPress={this.Login}
         />
 
-
-        <Bttn
-          buttonTitle="Forgot password"
-          onPress={() => alert('Main')}
-        />
         <Bttn
           buttonTitle="Don't have an account? Sign up!"
           onPress={() => this.props.navigation.navigate('Register')}
@@ -115,6 +109,9 @@ export default class login extends Component {
     );
   }
 }
+
+AppRegistry.registerComponent('Login', () => Login);
+
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
@@ -145,83 +142,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('login', () => login);
 
-// import * as React from 'react';
-// import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
-// import { windowHeight } from '../components/utils/WindowDimensions';
-
-
-// const Login = ({ navigation }) => {
-
-//   return (
-    // <View style={styles.container}>
-    //   <Image
-    //     source={require('../images/5.png')}
-    //     style={styles.logo}
-    //   />
-    //   <Text style={styles.text}> Log In </Text>
-
-    //   <Input
-    //     placeholderText="Email"
-    //     iconType="mail-outline"
-    //     keyboardType="email-address"
-    //     autoCapitalize="none"
-    //   />
-    //   <Input
-    //     placeholderText="Password"
-    //     iconType="lock-closed-outline"
-    //     secureTextEntry={true}
-    //   />
-
-    //   <LoginButton
-    //     buttonTitle="Sign In"
-    //     onPress={() => alert('Main')}
-    //   />
-
-
-    //   <Bttn
-    //     buttonTitle="Forgot password"
-    //     onPress={() => alert('Main')}
-    //   />
-    //   <Bttn
-    //     buttonTitle="Don't have an account? Sign up!"
-    //     onPress={() => navigation.navigate("Register")}
-    //   />
-
-
-    // </View >
-//   );
-// };
-
-// export default Login;
-
-// const styles = StyleSheet.create({
-//   container: {
-//     alignItems: 'center',
-//     padding: 15,
-//     marginTop: windowHeight / 30,
-//   },
-//   logo: {
-//     height: 300,
-//     width: 300,
-//     resizeMode: 'cover',
-//   },
-//   text: {
-//     fontSize: 30,
-//     marginBottom: 10,
-//     color: '#34548a',
-//   },
-//   navButton: {
-//     marginTop: 15,
-//   },
-//   forgotButton: {
-//     marginVertical: 35,
-//   },
-//   navButtonText: {
-//     marginBottom: -30,
-//     fontSize: 18,
-//     fontWeight: '500',
-//     color: '#2e64e5',
-//   },
-// });
